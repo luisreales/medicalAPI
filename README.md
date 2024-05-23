@@ -1,4 +1,5 @@
 # Medical API
+Developer: Luis Reales. 
 
 This is a .NET Core API for managing medical data. It uses Clean Architecture , Docker and Dapper for data access.
 
@@ -29,7 +30,7 @@ The API has endpoints for managing patients. Here are some examples:
   
 - `GET /ListPatients`: Get a list of all patients.
 
-Add more endpoint descriptions as needed...
+<img width="1042" alt="image" src="https://github.com/luisreales/medicalAPI/assets/48936231/560cde24-41a0-4fb2-b125-0099b89409e3">
 
 ## Stopping the Project
 
