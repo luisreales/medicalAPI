@@ -1,0 +1,40 @@
+# Please refer https://aka.ms/HTTPSinContainer on how to setup an https developer certificate for your ASP.NET Core service.
+
+version: '3.4'
+
+services:
+  medicalapi:
+    image: docker.io/library/medicalap 
+    depends_on:
+      - "medicalapi-db"
+    container_name: medicalapi-services
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - "8088:80"
+    environment:
+      - ASPNETCORE_URLS=http://+:80
+      - ConnectionStrings__DefaultConnection=User ID =postgres;Password=postgres;Server=medicalapi-db;Port=5432;Database=medicaldb;Pooling=true;
+    networks:
+      - dev
+  medicalapi-db:
+    image: postgres:latest
+    container_name: medicalapi-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: medicaldb
+    ports:
+      - 5433:5432
+    restart: always
+    volumes:
+      - medicalapi-db:/var/lib/postgresql/data
+      - ./DataInit/Init.sql:/docker-entrypoint-initdb.d/Init.sql
+    networks:
+      - dev
+volumes:
+  medicalapi-db:
+networks:
+  dev:
+
