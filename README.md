@@ -14,7 +14,7 @@ This is a .NET Core API for managing medical data. It uses Clean Architecture , 
 3. Run the following command to build and start the Docker containers:
 
     ```bash
-    docker-compose up --build
+    docker-compose up --build -d
     ```
 
     This command will build the Docker images for the API and the database, and then start the containers. The API will be available at `http://localhost:8088`.

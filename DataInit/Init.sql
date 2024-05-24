@@ -1,9 +1,3 @@
--- Database: medicaldb
-
---DROP DATABASE IF EXISTS medicaldb;
-
-
----CREATE TABLES FOR PROYECT
 
 -- Create facilities table
 CREATE TABLE facilities (
@@ -79,7 +73,7 @@ INSERT INTO patients (id, first_name, last_name, age) VALUES
 (14, 'Matthew', 'Harris', 14),
 (15, 'Lisa', 'Martin', 41),
 (16, 'Kevin', 'Thompson', 32),
-(17, 'Nancy', 'Garcia', 44),
+(17, 'Nancy', 'Garcia', 15),
 (18, 'Paul', 'Martinez', 35),
 (19, 'Sandra', 'Robinson', 46),
 (20, 'Mark', 'Clark', 39);

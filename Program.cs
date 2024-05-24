@@ -1,6 +1,8 @@
 using System.Data;
-using MedicalAPI.Middleware;
-using MedicalAPI.Services;
+using MedicalAPI.Application.Interface;
+using MedicalAPI.Application.Services;
+using MedicalAPI.Infrastructure.Data;
+using MedicalAPI.Presentation.Middleware;
 using Npgsql;
 using Serilog;
 
@@ -18,7 +20,6 @@ try
     builder.Services.AddSerilog();
     //services for Controller
     builder.Services.AddControllers();
-    // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
 
@@ -26,11 +27,16 @@ try
     builder.Services.AddScoped<IDbConnection>(provider =>
     {
         var configuration = provider.GetRequiredService<IConfiguration>();
+        /// <summary>
+        /// Retrieves the connection string from the configuration file.
+        /// </summary>
         var connectionString = configuration.GetConnectionString("DefaultConnection");
         return new NpgsqlConnection(connectionString);
     });
 
     builder.Services.AddScoped<IPatientService, PatientService>();
+    builder.Services.AddScoped<IPatientRepository, PatientRepository>();  
+
 
     var app = builder.Build();
 
